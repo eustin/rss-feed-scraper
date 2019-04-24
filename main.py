@@ -44,6 +44,7 @@ def get_feed_status(etag):
 
 
 # here is the main part
+print('script running at ' + pendulum.now().strftime('%Y-%m-%d %H-%M'))
 latest_etag = read_last_etag()
 feed_status = get_feed_status(latest_etag)
 
