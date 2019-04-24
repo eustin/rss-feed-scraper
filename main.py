@@ -1,6 +1,8 @@
-# activate virtual env
+# activate virtual env -------------------------------------------------------------------------------------------------
 # see requirements.txt for required libraries
+
 import os
+
 activate_this = os.path.expanduser('~/.virtualenvs/feed-scraper/bin/activate_this.py')
 exec(open(activate_this).read(), {'__file__': activate_this})
 
@@ -9,7 +11,12 @@ from urllib.request import urlretrieve
 import pendulum
 import sys
 
+# globals --------------------------------------------------------------------------------------------------------------
+
 url = "https://feeds.feedburner.com/RBloggers?format=xml"
+
+
+# functions ------------------------------------------------------------------------------------------------------------
 
 def make_file_name():
     current_date_time = pendulum.now()
@@ -17,10 +24,12 @@ def make_file_name():
     file_name = file_time + '.xml'
     return file_name
 
+
 def read_last_etag():
     with open('./github/feed-scraper/latest_etag.txt', 'r') as infile:
         latest_etag = infile.read()
     return latest_etag
+
 
 def write_new_etag(feed):
     with open('./github/feed-scraper/latest_etag.txt', 'w') as outfile:
@@ -43,7 +52,8 @@ def get_feed_status(etag):
     return next_feed.status
 
 
-# here is the main part
+# main script ----------------------------------------------------------------------------------------------------------
+
 print('script running at ' + pendulum.now().strftime('%Y-%m-%d %H-%M'))
 latest_etag = read_last_etag()
 feed_status = get_feed_status(latest_etag)
