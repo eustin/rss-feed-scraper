@@ -1,4 +1,7 @@
-activate_this = '/home/z5195733/.virtualenvs/feed-scraper/bin/activate_this.py'
+# activate virtual env
+# see requirements.txt for required libraries
+import os
+activate_this = os.path.expanduser('~/.virtualenvs/feed-scraper/bin/activate_this.py')
 exec(open(activate_this).read(), {'__file__': activate_this})
 
 import feedparser
